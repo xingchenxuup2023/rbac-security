@@ -35,3 +35,4 @@ build/
 /.mvn/
 mvnw
 mvnw.cmd
+/src/main/java/com/xcx/security/LocalAutoGenerator.java
