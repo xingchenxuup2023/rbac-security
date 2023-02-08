@@ -1,0 +1,15 @@
+#spring:
+#  datasource:
+#    url: jdbc:mysql://url:3306/rbac
+#    username: username
+#    password: password
+#  mvc:
+#    pathmatch:
+#      matching-strategy: ant_path_matcher
+#
+#  redis:
+#    host: redishost
+#    port: 6379
+#    password: ''
+#    database: 0
+#

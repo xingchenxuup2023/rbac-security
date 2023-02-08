@@ -1,10 +1,10 @@
-package com.xcx.security.vo.rbac;
+package com.xcx.security.model.rbac;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.xcx.security.vo.BaseVo;
+import com.xcx.security.model.BaseModel;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
@@ -21,7 +21,7 @@ import lombok.experimental.Accessors;
 @Setter
 @Accessors(chain = true)
 @TableName("menu")
-public class Menu extends BaseVo {
+public class Menu extends BaseModel {
 
     /**
      * 菜单id
@@ -39,7 +39,7 @@ public class Menu extends BaseVo {
      * 业务类型（多平台使用）
      */
     @TableField("biz_type")
-    private Byte bizType;
+    private Boolean bizType;
 
     /**
      * 权限，需要有哪个权限才能访问该菜单
@@ -69,13 +69,13 @@ public class Menu extends BaseVo {
      * 一直显示根路由
      */
     @TableField("always_show")
-    private Byte alwaysShow;
+    private Boolean alwaysShow;
 
     /**
      * 当设置 true 的时候该路由不会在侧边栏出现 如401，login等页面，或者如一些编辑页面/edit/1
      */
     @TableField("hidden")
-    private Byte hidden;
+    private Boolean hidden;
 
     /**
      * 设定路由的名字，一定要填写不然使用<keep-alive>时会出现各种问题
@@ -99,19 +99,19 @@ public class Menu extends BaseVo {
      * 如果设置为true，则不会被 <keep-alive> 缓存(默认 false)
      */
     @TableField("no_cache")
-    private Byte noCache;
+    private Boolean noCache;
 
     /**
      * 如果设置为false，则不会在breadcrumb面包屑中显示(默认 true)
      */
     @TableField("breadcrumb")
-    private Byte breadcrumb;
+    private Boolean breadcrumb;
 
     /**
      * 若果设置为true，它则会固定在tags-view中(默认 false)
      */
     @TableField("affix")
-    private Byte affix;
+    private Boolean affix;
 
     /**
      * 当路由设置了该属性，则会高亮相对应的侧边栏。

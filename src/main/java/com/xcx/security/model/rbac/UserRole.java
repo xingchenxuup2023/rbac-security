@@ -1,17 +1,17 @@
-package com.xcx.security.vo.rbac;
+package com.xcx.security.model.rbac;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.xcx.security.vo.BaseVo;
+import com.xcx.security.model.BaseModel;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 角色与菜单对应关系
+ * 用户与角色对应关系
  * </p>
  *
  * @author 邢晨旭
@@ -20,8 +20,8 @@ import lombok.experimental.Accessors;
 @Getter
 @Setter
 @Accessors(chain = true)
-@TableName("role_menu")
-public class RoleMenu extends BaseVo {
+@TableName("user_role")
+public class UserRole extends BaseModel {
 
     /**
      * 关联id
@@ -30,20 +30,14 @@ public class RoleMenu extends BaseVo {
     private Long id;
 
     /**
+     * 用户ID
+     */
+    @TableField("user_id")
+    private Long userId;
+
+    /**
      * 角色ID
      */
     @TableField("role_id")
     private Long roleId;
-
-    /**
-     * 菜单ID
-     */
-    @TableField("menu_id")
-    private Long menuId;
-
-    /**
-     * 菜单资源用户id
-     */
-    @TableField("menu_permission_id")
-    private Long menuPermissionId;
 }

@@ -35,4 +35,6 @@ build/
 /.mvn/
 mvnw
 mvnw.cmd
+# 自用
 /src/main/java/com/xcx/security/LocalAutoGenerator.java
+/src/main/resources/bootstrap.yml

@@ -5,6 +5,8 @@ import lombok.Setter;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.Objects;
+
 /**
  * @author 邢晨旭
  * @date 2023/1/30
@@ -48,23 +50,23 @@ public class Result<T> {
 
     public static <T> Result<T> ok() {
         Result<T> result = new Result<>();
-        result.setMsg(ResponseErrorEnum.OK.msg());
-        result.setCode(ResponseErrorEnum.OK.value());
+        result.setMsg(ResponseEnum.OK.msg());
+        result.setCode(ResponseEnum.OK.value());
         return result;
     }
 
     public static <T> Result<T> ok(T data) {
         Result<T> result = new Result<>();
         result.setData(data);
-        result.setCode(ResponseErrorEnum.OK.value());
+        result.setCode(ResponseEnum.OK.value());
         return result;
     }
 
     public static <T> Result<T> fail() {
         Result<T> result = new Result<>();
-        log.error(ResponseErrorEnum.FAIL.toString());
-        result.setMsg(ResponseErrorEnum.FAIL.msg());
-        result.setCode(ResponseErrorEnum.FAIL.value());
+        log.error(ResponseEnum.FAIL.toString());
+        result.setMsg(ResponseEnum.FAIL.msg());
+        result.setCode(ResponseEnum.FAIL.value());
         return result;
     }
 
@@ -72,12 +74,12 @@ public class Result<T> {
         log.error(msg);
         Result<T> result = new Result<>();
         result.setMsg(msg);
-        result.setCode(ResponseErrorEnum.FAIL.value());
+        result.setCode(ResponseEnum.FAIL.value());
         return result;
     }
 
 
-    public static <T> Result<T> fail(ResponseErrorEnum responseEnum) {
+    public static <T> Result<T> fail(ResponseEnum responseEnum) {
         log.error(responseEnum.toString());
         Result<T> result = new Result<>();
         result.setMsg(responseEnum.msg());
@@ -99,5 +101,8 @@ public class Result<T> {
         return result;
     }
 
+    public boolean isSuccess() {
+        return Objects.equals(ResponseEnum.OK.value(), this.code);
+    }
 
 }

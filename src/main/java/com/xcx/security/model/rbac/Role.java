@@ -1,10 +1,10 @@
-package com.xcx.security.vo.rbac;
+package com.xcx.security.model.rbac;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.xcx.security.vo.BaseVo;
+import com.xcx.security.model.BaseModel;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
@@ -21,7 +21,7 @@ import lombok.experimental.Accessors;
 @Setter
 @Accessors(chain = true)
 @TableName("role")
-public class Role extends BaseVo {
+public class Role extends BaseModel {
 
     /**
      * 角色id
