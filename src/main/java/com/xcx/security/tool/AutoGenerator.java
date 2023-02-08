@@ -7,7 +7,7 @@ import com.baomidou.mybatisplus.generator.config.OutputFile;
 import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
 import com.baomidou.mybatisplus.generator.fill.Column;
 import com.baomidou.mybatisplus.generator.fill.Property;
-import com.xcx.security.vo.BaseVo;
+import com.xcx.security.model.BaseModel;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.Collections;
@@ -39,7 +39,7 @@ public class AutoGenerator {
                     builder
 //                            .addInclude("team,team_member") // 设置需要生成的表名
                             .entityBuilder()
-                            .superClass(BaseVo.class)
+                            .superClass(BaseModel.class)
                             .disableSerialVersionUID()
                             .enableChainModel()
                             .enableLombok()

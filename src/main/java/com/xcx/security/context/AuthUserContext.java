@@ -12,6 +12,13 @@ public class AuthUserContext {
      * The request holder.
      */
     private static final ThreadLocal<UserInfoInTokenBO> USER_INFO_IN_TOKEN_HOLDER = new ThreadLocal<>();
+    static {
+        UserInfoInTokenBO userInfoInTokenBO = new UserInfoInTokenBO();
+        userInfoInTokenBO.setUserId(1L);
+        userInfoInTokenBO.setUid(1L);
+        userInfoInTokenBO.setSysType(1);
+        set(userInfoInTokenBO);
+    }
 
     public static UserInfoInTokenBO get() {
         return USER_INFO_IN_TOKEN_HOLDER.get();
