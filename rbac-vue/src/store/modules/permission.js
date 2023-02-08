@@ -1,4 +1,8 @@
-import { asyncRoutes, constantRoutes } from '@/router'
+import {constantRoutes} from '@/router'
+import {treeDataTranslate} from '@/utils'
+import {menuList} from '@/api/rbac/menu'
+import Layout from '@/layout'
+import store from '@/store'
 
 /**
  * Use meta.role to determine if the current user has permission
@@ -22,7 +26,7 @@ export function filterAsyncRoutes(routes, roles) {
   const res = []
 
   routes.forEach(route => {
-    const tmp = { ...route }
+    const tmp = {...route}
     if (hasPermission(roles, tmp)) {
       if (tmp.children) {
         tmp.children = filterAsyncRoutes(tmp.children, roles)
@@ -47,18 +51,30 @@ const mutations = {
 }
 
 const actions = {
-  generateRoutes({ commit }, roles) {
-    return new Promise(resolve => {
-      let accessedRoutes
-      if (roles.includes('admin')) {
-        accessedRoutes = asyncRoutes || []
-      } else {
-        accessedRoutes = filterAsyncRoutes(asyncRoutes, roles)
-      }
-      commit('SET_ROUTES', accessedRoutes)
-      resolve(accessedRoutes)
+  generateRoutes({commit}) {
+    return new Promise((resolve, reject) => {
+      menuList().then(response => {
+        const {data} = response
+        for (const menu of data) {
+          if (menu.component === 'Layout') {
+            menu.component = Layout
+          } else {
+            menu.component = loadView(menu.component)
+          }
+        }
+        const accessedRoutes = treeDataTranslate(data)
+        commit('SET_ROUTES', accessedRoutes)
+        resolve(accessedRoutes)
+      }).catch(error => {
+        console.log(error)
+        reject(error)
+      })
     })
   }
+}
+
+export const loadView = (view) => { // 路由懒加载
+  return () => Promise.resolve(require(`@/views/${view}`).default)
 }
 
 export default {

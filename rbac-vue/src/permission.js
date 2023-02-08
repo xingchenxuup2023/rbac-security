@@ -3,7 +3,7 @@ import store from './store'
 import { Message } from 'element-ui'
 import NProgress from 'nprogress' // progress bar
 import 'nprogress/nprogress.css' // progress bar style
-import { getToken } from '@/utils/auth' // get token from cookie
+import {getAccessToken, getToken} from '@/utils/auth' // get token from cookie
 import getPageTitle from '@/utils/get-page-title'
 
 NProgress.configure({ showSpinner: false }) // NProgress Configuration
@@ -18,7 +18,7 @@ router.beforeEach(async(to, from, next) => {
   document.title = getPageTitle(to.meta.title)
 
   // determine whether the user has logged in
-  const hasToken = getToken()
+  const hasToken = getAccessToken()
 
   if (hasToken) {
     if (to.path === '/login') {
@@ -37,11 +37,11 @@ router.beforeEach(async(to, from, next) => {
           const { roles } = await store.dispatch('user/getInfo')
 
           // generate accessible routes map based on roles
-          const accessRoutes = await store.dispatch('permission/generateRoutes', roles)
-
+          const accessRoutes = await store.dispatch('permission/generateRoutes')
+          accessRoutes.push({ path: '*', redirect: '/404', hidden: true })
           // dynamically add accessible routes
           router.addRoutes(accessRoutes)
-
+          console.log(accessRoutes)
           // hack method to ensure that addRoutes is complete
           // set the replace: true, so the navigation will not leave a history record
           next({ ...to, replace: true })
