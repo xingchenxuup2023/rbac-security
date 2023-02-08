@@ -1,6 +1,6 @@
 package com.xcx.security.service.rbac.impl;
 
-import com.xcx.security.vo.rbac.UserRole;
+import com.xcx.security.model.rbac.UserRole;
 import com.xcx.security.mapper.rbac.UserRoleMapper;
 import com.xcx.security.service.rbac.UserRoleService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;

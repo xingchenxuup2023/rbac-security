@@ -1,6 +1,8 @@
 package com.xcx.security.service.rbac;
 
-import com.xcx.security.vo.rbac.AuthAccount;
+import com.xcx.security.bo.UserInfoInTokenBO;
+import com.xcx.security.common.Result;
+import com.xcx.security.model.rbac.AuthAccount;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
@@ -13,4 +15,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface AuthAccountService extends IService<AuthAccount> {
 
+    UserInfoInTokenBO getUserInfoInTokenByInputUserNameAndPassword(String username, String password, Integer sysType);
 }

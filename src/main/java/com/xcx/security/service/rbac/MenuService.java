@@ -1,7 +1,9 @@
 package com.xcx.security.service.rbac;
 
-import com.xcx.security.vo.rbac.Menu;
+import com.xcx.security.model.rbac.Menu;
 import com.baomidou.mybatisplus.extension.service.IService;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,4 +15,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface MenuService extends IService<Menu> {
 
+    List<Menu> listBySysType(Integer sysType);
 }
