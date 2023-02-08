@@ -1,6 +1,6 @@
 package com.xcx.security.service.rbac;
 
-import com.xcx.security.vo.rbac.RoleMenu;
+import com.xcx.security.model.rbac.RoleMenu;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**

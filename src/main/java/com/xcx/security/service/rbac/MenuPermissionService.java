@@ -1,7 +1,7 @@
 package com.xcx.security.service.rbac;
 
-import com.xcx.security.vo.rbac.MenuPermission;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.xcx.security.model.rbac.MenuPermission;
 
 /**
  * <p>
@@ -12,5 +12,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @since 2023-02-01
  */
 public interface MenuPermissionService extends IService<MenuPermission> {
+
+    void clearUserPermissionsCache(Long userId, Integer sysType);
 
 }

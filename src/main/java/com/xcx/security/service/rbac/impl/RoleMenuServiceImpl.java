@@ -1,6 +1,6 @@
 package com.xcx.security.service.rbac.impl;
 
-import com.xcx.security.vo.rbac.RoleMenu;
+import com.xcx.security.model.rbac.RoleMenu;
 import com.xcx.security.mapper.rbac.RoleMenuMapper;
 import com.xcx.security.service.rbac.RoleMenuService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
