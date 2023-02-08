@@ -1,6 +1,6 @@
 package com.xcx.security.mapper.rbac;
 
-import com.xcx.security.vo.rbac.Role;
+import com.xcx.security.model.rbac.Role;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 

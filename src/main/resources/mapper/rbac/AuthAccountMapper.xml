@@ -4,11 +4,19 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        create_time,
+        create_time
+        ,
         update_time,
         create_account,
         update_account,
         uid, username, password, create_ip, status, sys_type, user_id, is_admin
     </sql>
+    <select id="getAuthAccountInVerifyByInputUserName" resultType="com.xcx.security.bo.AuthAccountInVerifyBO">
+        select user_id, sys_type,uid,password,is_admin, status from auth_account
+        where sys_type = #{sysType} and status != -1
+        <if test="inputUserNameType == 1">
+            and username = #{inputUserName}
+        </if>
+    </select>
 
 </mapper>
