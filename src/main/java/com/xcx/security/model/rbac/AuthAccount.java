@@ -69,5 +69,5 @@ public class AuthAccount extends BaseModel {
      * 是否是管理员
      */
     @TableField("is_admin")
-    private Byte isAdmin;
+    private Boolean isAdmin;
 }
