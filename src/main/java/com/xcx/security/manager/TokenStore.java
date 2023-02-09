@@ -173,11 +173,12 @@ public class TokenStore {
      *
      * @param refreshToken
      */
-    public TokenInfoBO refreshToken(String refreshToken) {
+    public TokenInfoVO refreshToken(String refreshToken) {
         if (StringUtils.isBlank(refreshToken)) {
             throw new RbacException("refreshToken is blank");
         }
-        String realRefreshToken = decryptToken(refreshToken, false);
+//        String realRefreshToken = decryptToken(refreshToken, false);
+        String realRefreshToken = refreshToken;
         String accessToken = stringRedisTemplate.opsForValue().get(getRefreshToAccessKey(realRefreshToken));
 
         if (StringUtils.isBlank(accessToken)) {
@@ -186,12 +187,18 @@ public class TokenStore {
 
         UserInfoInTokenBO userInfoInTokenBO = getUserInfoByAccessToken(accessToken,
                 false);
+        //TODO 逻辑待调整
+
         // 删除旧的refresh_token
         stringRedisTemplate.delete(getRefreshToAccessKey(realRefreshToken));
         // 删除旧的access_token
         stringRedisTemplate.delete(getAccessKey(accessToken));
         // 保存一份新的token
-        return storeAccessToken(userInfoInTokenBO);
+        TokenInfoBO tokenInfoBO = storeAccessToken(userInfoInTokenBO);
+        TokenInfoVO tokenInfoVO = new TokenInfoVO();
+        tokenInfoVO.setAccessToken(tokenInfoBO.getAccessToken());
+        tokenInfoVO.setRefreshToken(tokenInfoBO.getRefreshToken());
+        return tokenInfoVO;
     }
 
     /**
