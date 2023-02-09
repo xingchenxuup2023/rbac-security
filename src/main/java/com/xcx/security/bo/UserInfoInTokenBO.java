@@ -33,6 +33,6 @@ public class UserInfoInTokenBO {
     /**
      * 是否是管理员
      */
-    private Integer isAdmin;
+    private Boolean isAdmin;
 
 }
